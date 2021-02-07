@@ -1,0 +1,13 @@
+/* Footer */
+.useful-links ul {
+    margin: 0;
+    padding: 0;
+}
+
+.useful-links ul li {
+    list-style: none;
+}
+
+.useful-links ul li a {
+    color: #fff;
+}
