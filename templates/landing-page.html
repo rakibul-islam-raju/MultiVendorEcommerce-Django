@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{% endblock title %}
+
+{% block body %}
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card border-0">
+                        <div class="card-body">
+                            <h4 class="">Lorem ipsum dolor sit</h4>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis consectetur quis eius, iste omnis sunt qui expedita earum magni nobis sit necessitatibus reprehenderit magnam facilis perferendis dolores commodi eveniet asperiores. A nulla fugit porro expedita assumenda id perferendis. Eos, expedita.</p>
+                            
+                            {% if not user.vendor %}
+                            <div class="d-flex justify-content-center">
+                                <a 
+                                    href="{% url 'vendor:become_vendor' %}" 
+                                    class="btn btn-outline-dark btn-lg mb-4 mt-2"
+                                >
+                                    Become a Vendor
+                                </a>
+                            </div>
+                            {% endif %}
+
+                            <h4>Lorem ipsum dolor sit</h4>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis consectetur quis eius, iste omnis sunt qui expedita earum magni nobis sit necessitatibus reprehenderit magnam facilis perferendis dolores commodi eveniet asperiores. A nulla fugit porro expedita assumenda id perferendis. Eos, expedita.</p>
+                            <hr>
+                            <h4>Lorem ipsum dolor sit</h4>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis consectetur quis eius, iste omnis sunt qui expedita earum magni nobis sit necessitatibus reprehenderit magnam facilis perferendis dolores commodi eveniet asperiores</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+    </main>
+{% endblock body %}
