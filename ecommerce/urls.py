@@ -8,6 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls', namespace='core')),
     path('', include('vendor.urls', namespace='vendor')),
+    path('', include('product.urls', namespace='product')),
     # auth
     path('accounts/login/', LoginView.as_view(template_name='login.html'), name='login'),
     path('accounts/logout/', LogoutView.as_view(), name='logout'),

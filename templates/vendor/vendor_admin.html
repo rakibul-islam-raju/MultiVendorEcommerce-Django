@@ -8,17 +8,56 @@
 <main>
     <div class="container">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <div class="card shadow border-0">
                     <div class="card-header">
                         <h4>Vendor admin - {{ vendor|title }}</h4>
                     </div>
                     <div class="card-body">
-                        
+                        <div class="d-flex justify-content-between mb-2">
+                            <h5>Product List</h5>
+                            <a class="btn btn-sm btn-secondary" href="{% url 'vendor:add_product_to_vendor' %}">Add New Product</a>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead class="bg-dark bg-gradient text-white">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Thumbnail</th>
+                                        <th>Title</th>
+                                        <th>Price</th>
+                                        <th>Category</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% if products %}
+                                    {% for product in products %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>
+                                            <a class="text-dark stretched-link" href="{{ product.get_absolute_url }}">
+                                                <img class="img-thumbnail" src="{{ product.get_thumb }}" alt="{{ product.title }}">
+                                            </a>
+                                        </td>
+                                        <td>{{ product.title }}</td>
+                                        <td>{{ product.price }}</td>
+                                        <td>{{ product.category }}</td>
+                                        <td>Action</td>
+                                    </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        <td class="text-center" colspan="6">No Products Available.</td>
+                                    </tr>
+                                {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="d-flex justify-content-end">
                     <a href="{% url 'logout' %}" class="btn btn-sm btn-outline-danger">Logout</a>
                 </div>
