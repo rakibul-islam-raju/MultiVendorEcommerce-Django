@@ -1,3 +1,16 @@
+/* Global */
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.badge.bg-dark.bg-gradient:hover {
+    color: #fff;
+  }
+
 /* Footer */
 .useful-links ul {
     margin: 0;

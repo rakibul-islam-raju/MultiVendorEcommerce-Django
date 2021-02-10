@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}{% endblock title %}
+
+{% block body %}
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="product-img mb-2">
+                            {% if product.image %}
+                                <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.title }}">
+                            {% else %}
+                                <img src="{{ product.get_thumb }}" class="card-img-top" alt="{{ product.title }}">
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="product-info py-3">
+                            <div class="badges d-flex mb-2">
+                                <a href="{% url 'product:category' product.category.category_slug %}" class="badge bg-dark bg-gradient">
+                                    {{ product.category }}
+                                </a>
+                            </div>
+                            <h4>{{ product.title|title }}</h4>
+                            <span>৳ {{ product.price }}</span>
+                            <p class="text-mute">{{ product.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                
+            </div>
+        </div>
+
+        <!-- similar products -->
+        {% if similar_products.count > 1 %}
+        <div class="row">
+            <div class="col">
+                {% for product in similar_products %}
+                <div class="card shadow border-0 mb-2 mr-2">
+                    <img src="{{ product.get_thumb }}" class="card-img-top" alt="{{ product.title }}">
+                    <div class="card-body">
+                        <span class="badge bg-dark bg-gradient">{{ product.category }}</span>
+                        <h5>{{ product.title }}</h5>
+                        <span>৳ {{ product.price }}</span>
+                        <a href="{{ product.get_absolute_url }}" class="stretched-link"></a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</main>
+{% endblock body %}

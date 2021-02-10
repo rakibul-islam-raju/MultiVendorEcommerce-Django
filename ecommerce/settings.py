@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     # local apps
     'core.apps.CoreConfig',
     'vendor.apps.VendorConfig',
+    'product.apps.ProductConfig',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +51,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'product.context_processors.categories',
             ],
         },
     },
@@ -124,3 +126,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # URL Redirections
 LOGOUT_REDIRECT_URL = 'login'
+
+# Messages
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'

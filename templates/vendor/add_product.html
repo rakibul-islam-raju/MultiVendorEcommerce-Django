@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}{% endblock title %}
+
+{% block body %}
+<main>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow border-0">
+                    <div class="card-header">
+                        <h4>Add New Product</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            <div class="d-flex justify-content-between mt-3">
+                                <a href="{% url 'vendor:vendor_admin' %}" class="btn btn-outline-warning">Cancel</a>
+                                <button class="btn btn-secondary" type="submit">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock body %}

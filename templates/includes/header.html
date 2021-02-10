@@ -7,35 +7,53 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
         <!-- left menus -->
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active border-info" aria-current="page" href="#">Categories</a>
+            <li class="nav-item dropdown">
+              {% comment %} <a class="nav-link active" aria-current="page" href="#">Categories</a> {% endcomment %}
+              <a class="nav-link dropdown-toggle active" href="#" id="categories" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Categories
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end mt-2" aria-labelledby="categories">
+                {% for category in categories %}
+                  <li>
+                    <a class="dropdown-item" href="{% url 'product:category' category.category_slug %}">
+                      {{ category }}
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
             </li>
+
             <li class="nav-item">
-              <a class="nav-link active border-info" aria-current="page" href="#">Shopping</a>
+              <a class="nav-link active" aria-current="page" href="{% url 'product:product_list' %}">Shopping</a>
             </li>
+
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">Vendors</a>
             </li>
           </ul>
+
           <!-- left menus -->
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             {% if user.is_authenticated %}
+            <li class="nav-item dropdown">
             <a href="#" class="nav-link active dropdown-toggle" id="bd-versions" data-bs-toggle="dropdown" aria-expanded="true" data-bs-display="static">
               {{ user.username }}
             </a>
-            <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="bd-versions">
+            <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end mt-2" aria-labelledby="bd-versions">
               <li><a class="dropdown-item" href="#">Profile</a></li>
               {% if user.vendor %}
               <li><a class="dropdown-item" href="{% url 'vendor:vendor_admin' %}">Vendor Admin</a></li>
               {% endif %}
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Logout</a></li>
+              <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
             </ul>
+            </li>
             {% else %}
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Login</a>
+              <a class="nav-link active" aria-current="page" href="{% url 'login' %}">Login</a>
             </li>
             {% endif %}
           </ul>
