@@ -35,7 +35,21 @@
             </li>
           </ul>
 
-          <!-- left menus -->
+           <!-- center menus -->
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <form action="{% url 'product:search_product' %}" method="GET" class="row row-cols-lg-auto g-3 align-items-center">
+              <div class="col-12">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="product_query" id="is_product_query" placeholder="Search Products...">
+                  <button class="btn btn-success input-group-text">
+                    <i class="fas fa-search"></i>Search
+                  </button>
+                </div>
+              </div>
+            </form>
+          </ul>
+
+          <!-- right menus -->
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             {% if user.is_authenticated %}
             <li class="nav-item dropdown">

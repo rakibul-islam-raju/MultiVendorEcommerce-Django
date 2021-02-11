@@ -1,8 +1,22 @@
 import random
 
 from django.shortcuts import render, get_object_or_404
+from django.db.models import Q
 
 from .models import Product, Category
+
+
+def search_product(request):
+    query = request.GET.get('product_query')
+    products = Product.objects.filter(
+        Q(title__icontains=query)
+        | Q(description__icontains=query)
+    )
+    context = {
+        'products': products,
+        'qs_str': query
+    }
+    return render(request, 'product/search.html', context)
 
 
 def category(request, category_slug):
