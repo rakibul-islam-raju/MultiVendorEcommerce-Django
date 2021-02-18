@@ -29,6 +29,19 @@
                             <h4>{{ product.title|title }}</h4>
                             <span>৳ {{ product.price }}</span>
                             <p class="text-mute">{{ product.description }}</p>
+
+                            <form action="." method="POST" class="row row-cols-lg-auto g-3 align-items-center">
+                                {% csrf_token %}
+                                <div class="col-12">
+                                    <div class="input-group">
+                                    <input type="number" class="form-control" name="quantity" id="id_quantity">
+                                    <button type="submit" class="btn bg-dark bg-gradient text-white input-group-text">
+                                        ADD TO CART
+                                    </button>
+                                    </div>
+                                </div>
+                            </form>
+
                         </div>
                     </div>
                 </div>

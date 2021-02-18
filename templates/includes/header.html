@@ -42,7 +42,7 @@
                 <div class="input-group">
                   <input type="text" class="form-control" name="product_query" id="is_product_query" placeholder="Search Products...">
                   <button class="btn btn-success input-group-text">
-                    <i class="fas fa-search"></i>Search
+                    <i class="fas fa-search"></i>
                   </button>
                 </div>
               </div>
@@ -51,19 +51,25 @@
 
           <!-- right menus -->
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'cart:cart_detail' %}">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="badge bg-success">{{ cart|length }}</span>
+              </a>
+            </li>
             {% if user.is_authenticated %}
             <li class="nav-item dropdown">
-            <a href="#" class="nav-link active dropdown-toggle" id="bd-versions" data-bs-toggle="dropdown" aria-expanded="true" data-bs-display="static">
-              {{ user.username }}
-            </a>
-            <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end mt-2" aria-labelledby="bd-versions">
-              <li><a class="dropdown-item" href="#">Profile</a></li>
-              {% if user.vendor %}
-              <li><a class="dropdown-item" href="{% url 'vendor:vendor_admin' %}">Vendor Admin</a></li>
-              {% endif %}
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
-            </ul>
+              <a href="#" class="nav-link active dropdown-toggle" id="bd-versions" data-bs-toggle="dropdown" aria-expanded="true" data-bs-display="static">
+                {{ user.username }}
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end mt-2" aria-labelledby="bd-versions">
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                {% if user.vendor %}
+                <li><a class="dropdown-item" href="{% url 'vendor:vendor_admin' %}">Vendor Admin</a></li>
+                {% endif %}
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+              </ul>
             </li>
             {% else %}
             <li class="nav-item">
