@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}{% endblock title %}
+
+{% block body %}
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <!-- New products -->
+                <div class="card shadow border-0">
+                    <div class="card-body">
+                        {% if cart %}
+                        <table class="table table-hover text-center">
+                            <thead class="bg-dark bg-gradient text-white">
+                                <tr class="d-flex">
+                                    <th class="col-3">Thumbnail</th>
+                                    <th class="col-3">Product</th>
+                                    <th class="col-2">Quantity</th>
+                                    <th class="col-2">Price</th>
+                                    <th class="col-2">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in cart %}
+                                <tr class="d-flex">
+                                    <td class="col-3">
+                                        <img src="{{ item.product.get_thumb }}" class="img-thumbnail" alt="{{ item.product.title }}">
+                                    </td>
+                                    <td class="col-3">{{ item.product.title }}</td>
+                                    <td class="col-2">
+                                        <a href="?change_quantity={{ item.id }}&quantity=-1" class="m-3 text-success"><i class="fas fa-minus"></i></a>
+                                        {{ item.quantity }} 
+                                        <a href="?change_quantity={{ item.id }}&quantity=1" class="m-3 text-success"><i class="fas fa-plus"></i></a>
+                                    </td>
+                                    <td class="col-2">৳ {{ item.total_price }}</td>
+                                    <td class="col-2">
+                                        <a class="btn btn-danger" href="?remove_from_cart={{ item.id }}">
+                                            <i class="fa fa-trash-alt"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                            <tfoot>
+                                <tr class="d-flex">
+                                    <th class="col-6" colspan="2">Total</th>
+                                    <td class="col-2">{{ cart|length }}</td>
+                                    <td class="col-2">৳ {{ cart.get_total_cost }}</td>
+                                    <td class="col-2"></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        {% else %}
+                        <div class="text-center mb-2">
+                            <h5 class="text-dark">Your cart is empty. </h5>
+                            <a class="text-success" href="{% url 'product:product_list' %}">
+                                <i class="fas fa-shopping-cart display-2 mt-4"></i>
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock body %}

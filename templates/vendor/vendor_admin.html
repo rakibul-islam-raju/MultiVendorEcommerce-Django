@@ -36,11 +36,11 @@
                                     <tr>
                                         <td>{{ forloop.counter }}</td>
                                         <td>
-                                            <a class="text-dark stretched-link" href="{{ product.get_absolute_url }}">
+                                            <a class="text-dark" href="{{ product.get_absolute_url }}">
                                                 <img class="img-thumbnail" src="{{ product.get_thumb }}" alt="{{ product.title }}">
                                             </a>
                                         </td>
-                                        <td>{{ product.title }}</td>
+                                        <td><a href="{{ product.get_absolute_url }}" class="text-dark">{{ product.title }}</a></td>
                                         <td>{{ product.price }}</td>
                                         <td>{{ product.category }}</td>
                                         <td>Action</td>

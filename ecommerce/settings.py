@@ -1,5 +1,7 @@
 from pathlib import Path
 
+from django.contrib import messages
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,6 +28,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'vendor.apps.VendorConfig',
     'product.apps.ProductConfig',
+    'cart.apps.CartConfig',
 ]
 
 MIDDLEWARE = [
@@ -51,7 +54,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
                 'product.context_processors.categories',
+                'cart.context_processors.cart',
             ],
         },
     },
@@ -129,3 +134,10 @@ LOGOUT_REDIRECT_URL = 'login'
 
 # Messages
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger'
+}
+
+# session
+SESSION_COOKIE_AGE = 86400
+CART_SESSION_ID = 'cart'
